@@ -1,14 +1,14 @@
-# Antigravity CLI Status Line (`statusline.sh`)
+# Antigravity CLI Helpers (`agy-cli`)
 
 > [!IMPORTANT]  
-> This project is not provided by Google and does not come with any support or warranties. This project serves as a proof of concept for how it's possible to customize the Antigravity CLI status line to surface real-time context window and token usage metrics.  
+> This project is not provided by Google and does not come with any support or warranties. This project serves as a proof of concept for how it's possible to customize and extend the Antigravity CLI (`agy`).  
 > Though functional, you may wish to change the design for increased reliability or feature detail.
 
 > [!IMPORTANT]  
 > Accurate as of 10/23/2026
 
 **What this is**
-A responsive, 16-color ANSI status line script (`scripts/statusline.sh`) for the Antigravity CLI (`agy`) that renders live context window utilization, input/output token counts, model display name, Git branch/dirty state, sandbox mode, and active subagent/background task counts directly in the terminal footer.
+A collection of helper scripts and customizations for the Antigravity CLI (`agy`), starting with a responsive, 16-color ANSI status line hook (`scripts/statusline.sh`) that renders live context window utilization, input/output token counts, model display name, Git branch/dirty state, sandbox mode, and active subagent/background task counts directly in the terminal footer.
 
 **Why this exists**
 During long multi-turn coding or debugging sessions, it is easy to lose track of how much of the model's context window has been consumed or how many input and output tokens have accumulated before context compaction triggers. Antigravity CLI supports a configurable `statusLine` command hook that receives session state as JSON over `stdin` on every render tick. This script parses that payload in a single `jq` pass and adapts its layout automatically to wide (`>= 180` cols), medium (`>= 90` cols), and compact (`< 90` cols) terminals.
